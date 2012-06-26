@@ -46,8 +46,8 @@ exports.operators = {
 		});
 		return this;
 	},
-	match: filter(function(value, regex){
-		return new RegExp(regex).test(value);
+	match: filter(function(value, regex, flags){
+		return new RegExp(regex,flags).test(value);
 	}),
 	"in": filter(function(value, values){
 		return values.indexOf(value) > -1;
@@ -273,16 +273,17 @@ exports.operators = {
 exports.filter = filter;
 function filter(condition, not){
 	// convert to boolean right now
-	var filter = function(property, second){
+	var filter = function(property, second, options){
 		if(typeof second == "undefined"){
 			second = property;
 			property = undefined;
 		}
+
 		var args = arguments;
 		var filtered = [];
 		for(var i = 0, length = this.length; i < length; i++){
 			var item = this[i];
-			if(condition(evaluateProperty(item, property), second)){
+			if(condition(evaluateProperty(item, property), second, options)){
 				filtered.push(item);
 			}
 		}
