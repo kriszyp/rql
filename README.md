@@ -43,6 +43,9 @@ Which is identical (and sugar for call operator syntax known as the normalized f
 
     lt(price,10)
 
+Queries are absolute (relative to root) unless the `recurse` operator is used
+in which case descendents can be obtained as well.
+
 One can combine conditions with multiple operators with "&":
 
     foo=3&price=lt=10
