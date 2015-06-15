@@ -94,7 +94,7 @@ exports.operators = {
 		}finally{
 			// cleanup markers
 			for(var i = 0, l = items.length; i < l; i++){
-				delete items[idProperty];
+				delete items[i][idProperty];
 			}
 		}
 		return items;
